@@ -301,3 +301,11 @@ btnLeft.addEventListener("click", function(){
     if (offset < 0) offset = 800 * 4
     slideLine.style.left = -offset + "px"
 })
+
+/*Маска для телефона*/
+let element = document.querySelector('#phone_field');
+let maskOptions = {
+    mask: '+7(000)000-00-00',
+    lazy: false
+} 
+let mask = new IMask(element, maskOptions);
