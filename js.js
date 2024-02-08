@@ -53,10 +53,20 @@ function rebute(){
     let FName = firstname_field.value;
     let SName = lastname_field.value;
     let Phone = phone_field.value
-    FName = FName.substring(0, 1) 
-    letter.innerHTML = "<strong>Уважаемый, " + SName + " " + FName + "." + "</strong><br>Наши специалисты уже получили Вашу заявку и свяжутся с Вами в ближайшее время по телефону <strong><nobr>" + Phone + "</nobr></strong><br>Спасибо за обращение! "
-    orderAlert.classList.remove("unvisible")
-    orderAlert.classList.add("visible")
+    if (FName != "" && SName != "" && Phone != "" ){
+        firstname_field.style.borderColor = "black";
+        lastname_field.style.borderColor = "black";
+        phone_field.style.borderColor = "black";
+        FName = FName.substring(0, 1) 
+        letter.innerHTML = "<strong>Уважаемый, " + SName + " " + FName + "." + "</strong><br>Наши специалисты уже получили Вашу заявку и свяжутся с Вами в ближайшее время по телефону <strong><nobr>" + Phone + "</nobr></strong><br>Спасибо за обращение! "
+        orderAlert.classList.remove("unvisible")
+        orderAlert.classList.add("visible")
+    }else{
+        firstname_field.style.borderColor = "red";
+        lastname_field.style.borderColor = "red";
+        phone_field.style.borderColor = "red";
+    }
+    
 }
 /*функция загрузки*/
 function loading(){
@@ -68,6 +78,8 @@ function loading(){
         load_bg.classList.remove("old")
         load_bg.classList.add("unvisible")
         load_img.classList.add("unvisible")
+        setTimeout('load_img.style.width = "0px";',500);
+        
 
     }
 	return false;
@@ -150,12 +162,12 @@ document.addEventListener("scroll", function(){
         line.style.width = (window.pageYOffset + document.documentElement.clientHeight + 10) / h_page * 100  + "%";
     }
     /*Появления кнопки Вверх*/
-    if (window.pageYOffset / h_page * 100 > 40){
+    if (window.pageYOffset > 1000){
         button_up.style.backgroundColor = "#facb0e"
         button_up.style.bottom="40px"
         button_up.innerHTML = "Up"    
     }
-    if (window.pageYOffset / h_page * 100 < 40){
+    if (window.pageYOffset < 1000){
         button_up.style.backgroundColor = "#facb0e00"
         button_up.innerHTML = "" ;
         button_up.style.bottom="-80px"   
@@ -249,138 +261,43 @@ orderAlert.style.padding = "0px"
 let letter = document.querySelector('#letter')
 letter.innerHTML = " "
 btn_send.addEventListener("click", function(){
-    orderAlert.style.width = "500px"
-    orderAlert.style.padding = "25px"
-    if (visible == true){
-        orderAlert.classList.remove("visible")
-        orderAlert.classList.add("unvisible")
-        let time_add = setTimeout(rebute, 500)
-        
-        
-    } else {
-        visible = true
-        orderAlert.classList.remove("visible")
-        orderAlert.classList.add("unvisible")
-        let time_add = setTimeout(rebute, 500)
+    let FName = firstname_field.value;
+    let SName = lastname_field.value;
+    let Phone = phone_field.value
+    if (FName != "" && SName != "" && Phone != "" ){
+        orderAlert.style.width = "500px"
+        orderAlert.style.padding = "25px"
+        if (visible == true){
+            orderAlert.classList.remove("visible")
+            orderAlert.classList.add("unvisible")
+            let time_add = setTimeout(rebute, 500)
+
+        } else {
+            visible = true
+            orderAlert.classList.remove("visible")
+            orderAlert.classList.add("unvisible")
+            let time_add = setTimeout(rebute, 500)
+        }
+    }else{
+        firstname_field.style.borderColor = "red";
+        lastname_field.style.borderColor = "red";
+        phone_field.style.borderColor = "red";
     }
 
 })
 
 /*Слайдер*/
-let slide1 = document.querySelector("#slide1")
-let slide2 = document.querySelector("#slide2")
-let slide3 = document.querySelector("#slide3")
-let slide4 = document.querySelector("#slide4")
-let slide5 = document.querySelector("#slide5")
-let btn_left = document.querySelector("#btn_l")
-let btn_right = document.querySelector("#btn_r")
-let num_slider = 1
-slide2.classList.add("unvisible")
-slide3.classList.add("unvisible")
-slide4.classList.add("unvisible")
-slide5.classList.add("unvisible")
-slide2.classList.add("slide_right")
-slide3.classList.add("slide_right")
-slide4.classList.add("slide_right")
-slide5.classList.add("slide_right")
-btn_right.addEventListener("click", function(){
-    num_slider++
-    if (num_slider > 5){
-        num_slider = 1
-        
-    }
-    slide1.classList.remove("visible")
-    slide2.classList.remove("visible")
-    slide3.classList.remove("visible")
-    slide4.classList.remove("visible")
-    slide5.classList.remove("visible")
-    slide1.classList.add("unvisible")
-    slide2.classList.add("unvisible")
-    slide3.classList.add("unvisible")
-    slide4.classList.add("unvisible")
-    slide5.classList.add("unvisible")
-    if (num_slider == 1){
-        slide1.classList.remove("unvisible")
-        slide1.classList.add("visible")
-        slide1.classList.remove("slide_right")
-    }
-    if (num_slider == 2){
-        slide2.classList.remove("unvisible")
-        slide2.classList.add("visible")
-        slide2.classList.remove("slide_right")
-        slide1.classList.add("slide_left")
-        
-        slide5.classList.remove("slide_left")
-        slide5.classList.add("slide_right")
-    }
-    if (num_slider == 3){
-        slide3.classList.remove("unvisible")
-        slide3.classList.add("visible")
-        slide3.classList.remove("slide_right")
-        slide2.classList.add("slide_left")
-    }
-    if (num_slider == 4){
-        slide4.classList.remove("unvisible")
-        slide4.classList.add("visible")
-        slide4.classList.remove("slide_right")
-        slide3.classList.add("slide_left")
-    }
-    if (num_slider == 5){
-        slide5.classList.remove("unvisible")
-        slide5.classList.add("visible")
-        slide5.classList.remove("slide_right")
-        slide4.classList.add("slide_left")
-        slide1.classList.add("slide_right")
-        slide1.classList.remove("slide_left")
-    }
+let btnLeft = document.querySelector("#btn_l")
+let btnRight = document.querySelector("#btn_r")
+let slideLine = document.querySelector(".slider-line")
+let offset = 0
+btnRight.addEventListener("click", function(){
+    offset += 800
+    if (offset > 800*4) offset = 0
+    slideLine.style.left = -offset + "px"
 })
-btn_left.addEventListener("click", function(){
-    num_slider--
-    if (num_slider < 1){
-        num_slider = 5
-    }
-    slide1.classList.remove("visible")
-    slide2.classList.remove("visible")
-    slide3.classList.remove("visible")
-    slide4.classList.remove("visible")
-    slide5.classList.remove("visible")
-    slide1.classList.add("unvisible")
-    slide2.classList.add("unvisible")
-    slide3.classList.add("unvisible")
-    slide4.classList.add("unvisible")
-    slide5.classList.add("unvisible")
-    if (num_slider == 1){
-        slide1.classList.remove("unvisible")
-        slide1.classList.add("visible")
-        slide1.classList.remove("slide_left")
-        slide2.classList.add("slide_right")
-        slide5.classList.add("slide_left")
-        slide5.classList.remove("slide_right")
-    }
-    if (num_slider == 2){
-        slide2.classList.remove("unvisible")
-        slide2.classList.add("visible")
-        slide2.classList.remove("slide_left")
-        slide3.classList.add("slide_right")
-    }
-    if (num_slider == 3){
-        slide3.classList.remove("unvisible")
-        slide3.classList.add("visible")
-        slide3.classList.remove("slide_left")
-        slide4.classList.add("slide_right")
-    }
-    if (num_slider == 4){
-        slide4.classList.remove("unvisible")
-        slide4.classList.add("visible")
-        slide4.classList.remove("slide_left")
-        slide5.classList.add("slide_right")
-        
-        slide1.classList.remove("slide_right")
-        slide1.classList.add("slide_left")
-    }
-    if (num_slider == 5){
-        slide5.classList.remove("unvisible")
-        slide5.classList.add("visible")
-        slide5.classList.remove("slide_left")
-    }
+btnLeft.addEventListener("click", function(){
+    offset -= 800
+    if (offset < 0) offset = 800 * 4
+    slideLine.style.left = -offset + "px"
 })
