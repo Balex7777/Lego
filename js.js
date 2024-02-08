@@ -86,6 +86,21 @@ button_up.classList.add("btn_up");
 button_up.innerHTML = "Up"
 document.body.appendChild(button_up);
 
+/*В корзину*/
+let item_container = document.querySelector(".goods-wrapper");
+let items = item_container.children;
+let len = items.length;
+let shopping_basket = document.querySelector('#basket')
+let sum_to_buy = 0
+for (let i = 0; i < len; i++){
+    let children = items[i].children
+    let btn = children[2]
+    btn.addEventListener("click", function(){
+        sum_to_buy += 1;
+        shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
+    })
+}
+
 /*Вызов переменных*/
 let product1 = document.querySelector("#product1")
 let product2 = document.querySelector("#product2")
@@ -189,8 +204,18 @@ document.addEventListener("scroll", function(){
     if (window.pageYOffset + document.documentElement.clientHeight > h_page - 100){
         let item_container = document.querySelector(".goods-wrapper");
         let items = item_container.children;
-        for(let i = 0; i < len; i++){
+        for(let i = 0; i < 6; i++){
             item_container.appendChild(items[i].cloneNode(true));
+        }
+        items = item_container.children;
+        let len = items.length;
+        for (let i = len - 6; i < len; i++){
+            let children = items[i].children
+            let btn = children[2]
+            btn.addEventListener("click", function(){
+                sum_to_buy += 1;
+                shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
+            })
         }
     }
 })
@@ -198,42 +223,7 @@ document.addEventListener("scroll", function(){
 button_up.addEventListener("click", function(){
         up()
 })
-/*В корзину*/
-let item_container = document.querySelector(".goods-wrapper");
-let items = item_container.children;
-let len = items.length;
-let btn_buy1 = document.querySelector('#btn_buy1');
-let btn_buy2 = document.querySelector('#btn_buy2');
-let btn_buy3 = document.querySelector('#btn_buy3');
-let btn_buy4 = document.querySelector('#btn_buy4');
-let btn_buy5 = document.querySelector('#btn_buy5');
-let btn_buy6 = document.querySelector('#btn_buy6');
-let shopping_basket = document.querySelector('#basket')
-let sum_to_buy = 0
-btn_buy1.addEventListener("click", function(){
-    sum_to_buy += 1;
-    shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
-})
-btn_buy2.addEventListener("click", function(){
-    sum_to_buy += 1;
-    shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
-})
-btn_buy3.addEventListener("click", function(){
-    sum_to_buy += 1;
-    shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
-})
-btn_buy4.addEventListener("click", function(){
-    sum_to_buy += 1;
-    shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
-})
-btn_buy5.addEventListener("click", function(){
-    sum_to_buy += 1;
-    shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
-})
-btn_buy6.addEventListener("click", function(){
-    sum_to_buy += 1;
-    shopping_basket.innerHTML = '<img src="img/cart25.png"> ' + sum_to_buy
-})
+
 
 /*плавный скролл до нужного раздела при клике на меню навигации*/
 anchor1.addEventListener("click", function(){
