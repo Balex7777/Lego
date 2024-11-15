@@ -79,8 +79,6 @@ function loading(){
         load_bg.classList.add("unvisible")
         load_img.classList.add("unvisible")
         setTimeout('load_img.style.width = "0px";',500);
-        
-
     }
 	return false;
 }
@@ -89,7 +87,6 @@ let i = 1
 /*загрузка*/
 let load_bg = document.querySelector('.load_bg')
 let load_img = document.querySelector('.load_img')
-load_bg.classList.add("old")
 loading()
 
 /*создание кнопки Вверх*/
@@ -135,32 +132,12 @@ let line = document.querySelector('#line')
 document.addEventListener("scroll", function(){
     let h_page = document.querySelector("body").offsetHeight
     /*Индикатор прогресса прокрутки*/
-    if (window.pageYOffset == 0){
-        line.style.width = 0 + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 1 && window.pageYOffset < document.documentElement.clientHeight / 100 * 10){
-        
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 10 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 10 && window.pageYOffset < document.documentElement.clientHeight / 100 * 20){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 20 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 20 && window.pageYOffset < document.documentElement.clientHeight / 100 * 30){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 30 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 30 && window.pageYOffset < document.documentElement.clientHeight / 100 * 40){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 40 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 40 && window.pageYOffset < document.documentElement.clientHeight / 100 * 50){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 50 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 50 && window.pageYOffset < document.documentElement.clientHeight / 100 * 60){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 60 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 60 && window.pageYOffset < document.documentElement.clientHeight / 100 * 70){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 70 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 70 && window.pageYOffset < document.documentElement.clientHeight / 100 * 80){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 80 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 80 && window.pageYOffset < document.documentElement.clientHeight / 100 * 90){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 90 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 90 && window.pageYOffset < document.documentElement.clientHeight / 100 * 99){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight / 100 * 99 + 10) / h_page * 100  + "%";
-    }else if(window.pageYOffset > document.documentElement.clientHeight / 100 * 99){
-        line.style.width = (window.pageYOffset + document.documentElement.clientHeight + 10) / h_page * 100  + "%";
-    }
+		window.addEventListener('scroll', () => {
+			const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+			const scrollPercentage = (scrollTop / scrollHeight) * 100;
+			line.style.width = scrollPercentage + '%';
+		});
     /*Появления кнопки Вверх*/
     if (window.pageYOffset > 1000){
         button_up.style.backgroundColor = "#facb0e"

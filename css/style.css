@@ -1,3 +1,29 @@
+@keyframes loading {
+	0%{transform: rotate(0deg);}
+	30%{transform: rotate(20deg);}
+	50%{transform: rotate(-20deg);}
+	70%{transform: rotate(20deg);}
+	100%{transform: rotate(0deg);}
+}
+.load_img{
+	background-size: 20px;
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	left:45%;
+	top:45%;
+	z-index: 211;
+	transition: 0.3s;
+	animation: loading 1s infinite 0s;
+}
+.load_bg{
+	position: fixed;
+	left:0px;
+	top:0px;
+	background-color: #fff;
+	z-index: 210;
+	transition: 0.3s;
+}
 .line{
     margin:-2px;
     width: 0%;
@@ -43,32 +69,6 @@
 .old{
     width: 100%;
     height: 100%;
-}
-.load_img{
-    background-size: 20px;
-    width: 100px;
-    height: 100px;
-    position: fixed;
-    left:45%;
-    top:45%;
-    z-index: 211;
-    transition: 0.3s;
-    animation: loading 1s infinite 0s;
-}
-.load_bg{
-    position: fixed;
-    left:0px;
-    top:0px;
-    background-color: #fff;
-    z-index: 210;
-    transition: 0.3s;
-}
-@keyframes loading {
-    0%{transform: rotate(0deg);}
-    30%{transform: rotate(20deg);}
-    50%{transform: rotate(-20deg);}
-    70%{transform: rotate(20deg);}
-    100%{transform: rotate(0deg);}
 }
 .slide_right{
     margin-left:900px;
